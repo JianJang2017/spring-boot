@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring-eureka-server" />
+        <module name="spring-eureka-service-consumer" />
+        <module name="spring-eureka-service-provider" />
+        <module name="spring-message-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-eureka-server" target="1.8" />
+      <module name="spring-eureka-service-consumer" target="1.8" />
+      <module name="spring-eureka-service-provider" target="1.8" />
+      <module name="spring-message-api" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
