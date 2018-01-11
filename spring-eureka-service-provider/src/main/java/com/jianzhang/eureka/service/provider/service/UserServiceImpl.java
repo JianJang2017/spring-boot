@@ -6,15 +6,14 @@ import com.jianzhang.cloud.message.UserRequest;
 import com.jianzhang.cloud.message.UserResponse;
 import com.jianzhang.cloud.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * @Description: (这里用一句话描述这个类的作用)
+ * @Description: 服务实现类
  * @author Jian Jang
  * @version 1.0 2017/12/2
  */
@@ -23,7 +22,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 	@GetMapping("/getUserById")
 	@Override
-	public User getUserById(Long id) {
+	public User getUserById(@RequestParam Long id) {
 		log.info("userId:{}", id);
 		User user = User.builder().id(id).name("张三").email("zhangsan@zj.com")
 				.registerTime(new Date()).build();
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	@GetMapping("/getUserList")
 	@Override
 	public UserResponse getUserList(UserRequest request) {
-		log.info("request:{}", request.toString());
+		log.info("request2:{}", request.toString());
 		List<User> userList = Lists.newArrayList();
 		User user = User.builder().build();
 		user.setId(2001l);
@@ -50,17 +49,17 @@ public class UserServiceImpl implements UserService {
 	}
 	@PostMapping("/postUserById")
 	@Override
-	public User postUserById(Long id) {
+	public User postUserById(@RequestBody Long id) {
 		log.info("userId:{}", id);
 		User user = User.builder().id(id).name("张三").email("zhangsan@zj.com")
 				.registerTime(new Date()).build();
 		log.info("user:{}" + user.toString());
 		return user;
 	}
-	@PostMapping("/postUserList")
+	@PostMapping(value="/postUserList",consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	@Override
-	public UserResponse postUserList(UserRequest request) {
-		log.info("request:{}", request.toString());
+	public UserResponse postUserList(@RequestBody UserRequest request) {
+		log.info("request:{}",request);
 		List<User> userList = Lists.newArrayList();
 		User user = User.builder().build();
 		user.setId(2002l);
